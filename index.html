@@ -3,57 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peaceful Claude - Terminal</title>
+  <title>Peaceful Claude</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="app">
-    <nav class="sidebar">
-      <div class="sidebar-header">
-        <div class="logo">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            <path d="M9 14 L13 18 L19 10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="logo-text">Peaceful Claude</span>
-        </div>
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <button class="new-chat-btn" id="new-chat">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          New topic
+        </button>
       </div>
-      <div class="sidebar-nav">
-        <button class="nav-btn active" data-section="overview">Overview</button>
-        <button class="nav-btn" data-section="agent-orange">Agent Orange</button>
-        <button class="nav-btn" data-section="drone-strikes">Drone Program</button>
-        <button class="nav-btn" data-section="nuclear">Nuclear Weapons</button>
-        <button class="nav-btn" data-section="depleted-uranium">Depleted Uranium</button>
-        <button class="nav-btn" data-section="cluster-munitions">Cluster Munitions</button>
-        <button class="nav-btn" data-section="white-phosphorus">White Phosphorus</button>
-        <button class="nav-btn" data-section="landmines">Landmines</button>
+      <nav class="sidebar-threads">
+        <span class="threads-label">Topics</span>
+        <button class="thread active" data-section="overview">Overview</button>
+        <button class="thread" data-section="agent-orange">Agent Orange</button>
+        <button class="thread" data-section="drone-strikes">Drone Program</button>
+        <button class="thread" data-section="nuclear">Nuclear Weapons</button>
+        <button class="thread" data-section="depleted-uranium">Depleted Uranium</button>
+        <button class="thread" data-section="cluster-munitions">Cluster Munitions</button>
+        <button class="thread" data-section="white-phosphorus">White Phosphorus</button>
+        <button class="thread" data-section="landmines">Landmines</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="sidebar-note">Sourced from declassified records</span>
       </div>
-      <div class="sidebar-footer">
-        <p class="footnote">All information sourced from declassified documents, congressional records, and international investigations.</p>
-      </div>
-    </nav>
+    </aside>
 
     <main class="main">
-      <div class="terminal-wrapper">
-        <div class="terminal-bar">
-          <div class="terminal-dots">
-            <span class="dot dot-close"></span>
-            <span class="dot dot-min"></span>
-            <span class="dot dot-max"></span>
+      <div class="main-inner">
+        <div class="header">
+          <div class="header-logo">
+            <div class="logo-circle">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                <path d="M6.5 10L9 12.5L13.5 7.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span>Peaceful Claude</span>
           </div>
-          <span class="terminal-title">peaceful-claude --- terminal</span>
-          <div class="terminal-bar-right"></div>
         </div>
-        <div class="terminal" id="terminal">
-          <div class="terminal-content" id="terminal-content">
-            <!-- Content rendered by JS -->
+
+        <div class="conversation" id="conversation">
+          <!-- Content rendered by JS -->
+        </div>
+
+        <div class="input-area">
+          <div class="input-box">
+            <input type="text" id="input" placeholder="Type a topic or 'help'..." autocomplete="off" spellcheck="false">
+            <button class="send-btn" id="send-btn">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
-          <div class="input-row">
-            <span class="prompt-symbol">~</span>
-            <input type="text" id="terminal-input" class="terminal-input" placeholder="Type a topic or 'help' for commands..." autocomplete="off" spellcheck="false">
-          </div>
+          <span class="input-hint">peace through truth, accountability through memory</span>
         </div>
       </div>
     </main>
