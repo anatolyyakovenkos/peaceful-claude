@@ -1,34 +1,53 @@
-const sections = {
-  overview: {
-    gradient: '',
-    query: 'Tell me about U.S. weapons crimes',
-    lines: [
-      { type: 'heading', text: 'Weapons and Accountability: A Historical Record' },
-      { type: 'body', text: 'This project documents historically verified instances where United States weapons programs caused civilian harm or violated international humanitarian law.' },
-      { type: 'spacer' },
-      { type: 'body', text: 'All entries are sourced from declassified government documents, congressional testimony, international court rulings, and investigative journalism.' },
-      { type: 'spacer' },
-      { type: 'sub', text: 'Purpose' },
-      { type: 'body', text: 'Accountability requires memory. Peace requires truth. This project exists not to condemn a nation, but to honor the principle that no power is above scrutiny, and no civilian death should be forgotten or dismissed as collateral damage.' },
-      { type: 'spacer' },
-      { type: 'sub', text: 'Explore Topics' },
-      { type: 'tags', items: [
-        { label: 'Agent Orange', section: 'agent-orange', style: 1 },
-        { label: 'Drone Program', section: 'drone-strikes', style: 2 },
-        { label: 'Nuclear Weapons', section: 'nuclear', style: 3 },
-        { label: 'Depleted Uranium', section: 'depleted-uranium', style: 4 },
-        { label: 'Cluster Munitions', section: 'cluster-munitions', style: 5 },
-        { label: 'White Phosphorus', section: 'white-phosphorus', style: 1 },
-        { label: 'Landmines', section: 'landmines', style: 2 },
-      ]},
-    ],
-  },
+// Generate background flowers
+function createFlowers() {
+  const container = document.getElementById('flowers');
+  const colors = ['#e8a0b4', '#b8a0e8', '#a0cce8', '#a0e8c4', '#e8c4a0', '#e8d8a0', '#e8a0a0'];
 
+  const flowerSVGs = [
+    // Simple 5-petal flower
+    (c) => `<svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="18" r="10" fill="${c}"/><circle cx="18" cy="28" r="10" fill="${c}"/><circle cx="42" cy="28" r="10" fill="${c}"/><circle cx="22" cy="40" r="10" fill="${c}"/><circle cx="38" cy="40" r="10" fill="${c}"/><circle cx="30" cy="30" r="6" fill="${c}" opacity="0.6"/></svg>`,
+    // Daisy
+    (c) => `<svg viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="14" rx="5" ry="12" fill="${c}"/><ellipse cx="30" cy="46" rx="5" ry="12" fill="${c}"/><ellipse cx="14" cy="30" rx="12" ry="5" fill="${c}"/><ellipse cx="46" cy="30" rx="12" ry="5" fill="${c}"/><ellipse cx="19" cy="19" rx="5" ry="12" transform="rotate(45 19 19)" fill="${c}"/><ellipse cx="41" cy="41" rx="5" ry="12" transform="rotate(45 41 41)" fill="${c}"/><ellipse cx="41" cy="19" rx="5" ry="12" transform="rotate(-45 41 19)" fill="${c}"/><ellipse cx="19" cy="41" rx="5" ry="12" transform="rotate(-45 19 41)" fill="${c}"/><circle cx="30" cy="30" r="7" fill="${c}" opacity="0.5"/></svg>`,
+    // Simple leaf/petal
+    (c) => `<svg viewBox="0 0 40 60" fill="none"><path d="M20 5 Q35 20 35 35 Q35 55 20 55 Q5 55 5 35 Q5 20 20 5Z" fill="${c}"/><path d="M20 15 v30" stroke="${c}" stroke-width="1" opacity="0.4"/></svg>`,
+    // Small blossom
+    (c) => `<svg viewBox="0 0 50 50" fill="none"><circle cx="25" cy="15" r="8" fill="${c}"/><circle cx="15" cy="30" r="8" fill="${c}"/><circle cx="35" cy="30" r="8" fill="${c}"/><circle cx="25" cy="25" r="5" fill="${c}" opacity="0.5"/></svg>`,
+  ];
+
+  for (let i = 0; i < 20; i++) {
+    const el = document.createElement('div');
+    el.className = 'flower';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const svg = flowerSVGs[Math.floor(Math.random() * flowerSVGs.length)];
+    const size = 40 + Math.random() * 80;
+    el.innerHTML = svg(color);
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.top = Math.random() * 100 + '%';
+    el.style.opacity = 0.035 + Math.random() * 0.04;
+    el.style.animationDelay = -(Math.random() * 30) + 's';
+    el.style.animationDuration = (25 + Math.random() * 15) + 's';
+    el.style.transform = `rotate(${Math.random() * 360}deg)`;
+    container.appendChild(el);
+  }
+}
+
+// Greeting based on time
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return 'Good morning';
+  if (h < 17) return 'Good afternoon';
+  return 'Good evening';
+}
+
+// Section data
+const sections = {
   'agent-orange': {
-    gradient: 'g2',
+    color: 'c-mint',
     query: 'What was Agent Orange?',
     lines: [
-      { type: 'heading', cls: 'g2', text: 'Operation Ranch Hand: Agent Orange in Vietnam' },
+      { type: 'heading', cls: 'c-mint', text: 'Operation Ranch Hand: Agent Orange in Vietnam' },
       { type: 'sub', text: 'Timeline' },
       { type: 'body', text: '1962-1971: The U.S. military sprayed approximately 20 million gallons of herbicides over Vietnam, Laos, and Cambodia as part of Operation Ranch Hand. The most widely used agent was Agent Orange, which contained the toxic contaminant dioxin (TCDD), one of the most poisonous substances known.' },
       { type: 'spacer' },
@@ -36,22 +55,22 @@ const sections = {
       { type: 'stat', text: '3 million+ Vietnamese people exposed' },
       { type: 'stat', text: '150,000+ children born with birth defects attributed to dioxin' },
       { type: 'stat', text: 'Multiple generations affected through epigenetic damage' },
-      { type: 'stat', text: 'Cancers, neurological disorders, and immune deficiencies persist among exposed populations to this day' },
+      { type: 'stat', text: 'Cancers, neurological disorders, and immune deficiencies persist to this day' },
       { type: 'spacer' },
       { type: 'sub', text: 'U.S. Veterans' },
       { type: 'body', text: 'American service members were also devastated. The VA has recognized 14 diseases linked to Agent Orange exposure. Hundreds of thousands of U.S. veterans filed claims.' },
       { type: 'spacer' },
       { type: 'sub', text: 'Accountability' },
-      { type: 'body', text: 'Internal Dow Chemical memos from 1965 show the company knew dioxin was extraordinarily toxic. The U.S. government was warned but continued spraying for six more years. Vietnam has received limited remediation aid. No formal reparations have been made to Vietnamese victims.' },
+      { type: 'body', text: 'Internal Dow Chemical memos from 1965 show the company knew dioxin was extraordinarily toxic. The U.S. government was warned but continued spraying for six more years. No formal reparations have been made to Vietnamese victims.' },
       { type: 'source', text: 'Sources: Stellman et al. (Nature, 2003), VA.gov, Red Cross Vietnam' },
     ],
   },
 
   'drone-strikes': {
-    gradient: 'g3',
-    query: 'What about the U.S. drone program?',
+    color: 'c-lavender',
+    query: 'Tell me about the U.S. drone program',
     lines: [
-      { type: 'heading', cls: 'g3', text: 'The U.S. Drone Warfare Program' },
+      { type: 'heading', cls: 'c-lavender', text: 'The U.S. Drone Warfare Program' },
       { type: 'sub', text: 'Overview' },
       { type: 'body', text: 'Since 2001, the U.S. has conducted thousands of drone strikes across at least seven countries: Afghanistan, Pakistan, Yemen, Somalia, Iraq, Syria, and Libya. Many strikes were carried out under classified "signature strike" rules, targeting individuals based on behavioral patterns rather than confirmed identity.' },
       { type: 'spacer' },
@@ -61,8 +80,6 @@ const sections = {
       { type: 'stat', text: '283-454 of the confirmed civilians were children' },
       { type: 'spacer' },
       { type: 'sub', text: 'Notable Incidents' },
-      { type: 'body', text: 'Sep 2012: A U.S. drone struck a vehicle in Yemen, killing 12 civilians including 3 children, in what officials later admitted was a case of mistaken identity.' },
-      { type: 'spacer' },
       { type: 'body', text: 'Aug 2021: A drone strike in Kabul killed 10 members of the Ahmadi family, including 7 children. The Pentagon initially called it a "righteous strike" before admitting the target was an aid worker, not a combatant. No one was disciplined.' },
       { type: 'spacer' },
       { type: 'sub', text: 'Legal Concerns' },
@@ -72,35 +89,32 @@ const sections = {
   },
 
   nuclear: {
-    gradient: 'g4',
+    color: 'c-coral',
     query: 'What about nuclear weapons use?',
     lines: [
-      { type: 'heading', cls: 'g4', text: 'Nuclear Weapons: Bombings and Testing' },
+      { type: 'heading', cls: 'c-coral', text: 'Nuclear Weapons: Bombings and Testing' },
       { type: 'sub', text: 'Hiroshima and Nagasaki (1945)' },
       { type: 'body', text: 'The United States remains the only country to have used nuclear weapons in armed conflict.' },
       { type: 'spacer' },
-      { type: 'stat', text: 'Hiroshima (Aug 6): ~80,000 killed instantly, ~60,000 more dead by year end from radiation' },
-      { type: 'stat', text: 'Nagasaki (Aug 9): ~40,000 killed instantly, ~30,000 more dead by year end' },
+      { type: 'stat', text: 'Hiroshima (Aug 6): ~80,000 killed instantly, ~60,000 more by year end' },
+      { type: 'stat', text: 'Nagasaki (Aug 9): ~40,000 killed instantly, ~30,000 more by year end' },
       { type: 'stat', text: 'Total estimated deaths: 200,000+ by end of 1945' },
-      { type: 'stat', text: 'Survivors (hibakusha) suffered cancers, birth defects, and radiation illness for decades' },
+      { type: 'stat', text: 'Survivors suffered cancers, birth defects, and radiation illness for decades' },
       { type: 'spacer' },
       { type: 'sub', text: 'Nuclear Testing' },
-      { type: 'body', text: 'The U.S. conducted 1,032 nuclear tests between 1945 and 1992.' },
-      { type: 'spacer' },
-      { type: 'stat', text: 'Marshall Islands: 67 tests at Bikini and Enewetak Atolls. The 1954 Castle Bravo test was 1,000x more powerful than Hiroshima. Fallout contaminated inhabited islands.' },
-      { type: 'stat', text: 'Nevada Test Site: Over 900 tests. Downwind communities experienced elevated cancer rates. The government denied the connection for decades.' },
+      { type: 'body', text: 'The U.S. conducted 1,032 nuclear tests between 1945 and 1992. Marshall Islands residents were exposed to fallout from 67 tests. The 1954 Castle Bravo test was 1,000x more powerful than Hiroshima. Nevada downwind communities experienced elevated cancer rates the government denied for decades.' },
       { type: 'spacer' },
       { type: 'sub', text: 'Accountability' },
-      { type: 'body', text: 'The Radiation Exposure Compensation Act (1990) provided limited payments to some U.S. "downwinders." Marshall Islanders have called the $150M compact settlement grossly inadequate for the permanent loss of their homeland.' },
+      { type: 'body', text: 'The Radiation Exposure Compensation Act (1990) provided limited payments to some "downwinders." Marshall Islanders have called the $150M compact settlement grossly inadequate for the permanent loss of their homeland.' },
       { type: 'source', text: 'Sources: Atomic Heritage Foundation, Bulletin of Atomic Scientists, ICAN' },
     ],
   },
 
   'depleted-uranium': {
-    gradient: '',
+    color: 'c-sky',
     query: 'What is depleted uranium?',
     lines: [
-      { type: 'heading', text: 'Depleted Uranium Munitions' },
+      { type: 'heading', cls: 'c-sky', text: 'Depleted Uranium Munitions' },
       { type: 'sub', text: 'Usage' },
       { type: 'body', text: 'The U.S. military fired depleted uranium (DU) munitions extensively during the 1991 Gulf War and 2003 Iraq invasion. DU is a dense, mildly radioactive metal used in armor-piercing rounds. On impact, it aerosolizes into fine radioactive dust that persists in soil and water.' },
       { type: 'spacer' },
@@ -109,9 +123,7 @@ const sections = {
       { type: 'stat', text: 'DU particles have a radioactive half-life of 4.5 billion years' },
       { type: 'spacer' },
       { type: 'sub', text: 'Health Impact' },
-      { type: 'body', text: 'Basra, Iraq recorded a 17-fold increase in childhood cancers between 1993 and 2007. Doctors in Fallujah reported birth defect rates exceeding those of Hiroshima survivors.' },
-      { type: 'spacer' },
-      { type: 'body', text: 'U.S. and U.K. veterans who handled DU munitions have also reported elevated rates of cancers and Gulf War syndrome.' },
+      { type: 'body', text: 'Basra, Iraq recorded a 17-fold increase in childhood cancers between 1993 and 2007. Doctors in Fallujah reported birth defect rates exceeding those of Hiroshima survivors. U.S. and U.K. veterans also reported elevated cancer rates.' },
       { type: 'spacer' },
       { type: 'sub', text: 'Legal Status' },
       { type: 'body', text: 'The UN General Assembly has passed multiple resolutions requesting studies on DU health effects. The U.S. has consistently voted against these resolutions and maintains that DU munitions are legal.' },
@@ -120,41 +132,41 @@ const sections = {
   },
 
   'cluster-munitions': {
-    gradient: 'g2',
+    color: 'c-gold',
     query: 'What are cluster munitions?',
     lines: [
-      { type: 'heading', cls: 'g2', text: 'Cluster Munitions' },
+      { type: 'heading', cls: 'c-gold', text: 'Cluster Munitions' },
       { type: 'sub', text: 'What They Are' },
-      { type: 'body', text: 'Cluster bombs release hundreds of smaller submunitions ("bomblets") over a wide area. Between 10-40% of bomblets fail to explode on impact and remain as de facto landmines that kill and maim civilians for decades after conflicts end.' },
+      { type: 'body', text: 'Cluster bombs release hundreds of smaller submunitions ("bomblets") over a wide area. Between 10-40% fail to explode on impact and remain as de facto landmines that kill civilians for decades.' },
       { type: 'spacer' },
       { type: 'sub', text: 'U.S. Use' },
-      { type: 'stat', text: 'Vietnam/Laos: The U.S. dropped 270 million cluster bomblets on Laos alone (1964-1973), making it the most heavily bombed country per capita in history' },
+      { type: 'stat', text: '270 million cluster bomblets dropped on Laos (1964-1973)' },
       { type: 'stat', text: '80 million unexploded bomblets remain in Laos today' },
-      { type: 'stat', text: '~300 Laotians are killed or injured by UXO every year' },
+      { type: 'stat', text: '~300 Laotians killed or injured by UXO every year' },
       { type: 'spacer' },
-      { type: 'stat', text: 'Yugoslavia (1999): U.S./NATO forces used 1,392 cluster munitions containing 295,000 bomblets' },
-      { type: 'stat', text: 'Iraq (2003): Nearly 2 million bomblets dropped in the first three weeks of the invasion' },
+      { type: 'stat', text: 'Yugoslavia (1999): 295,000 bomblets deployed by U.S./NATO' },
+      { type: 'stat', text: 'Iraq (2003): Nearly 2 million bomblets in first three weeks' },
       { type: 'spacer' },
       { type: 'sub', text: 'International Ban' },
-      { type: 'body', text: 'The 2008 Convention on Cluster Munitions bans their use, production, and stockpiling. 112 countries have joined. The United States has not signed the treaty and continues to maintain cluster munition stockpiles.' },
+      { type: 'body', text: 'The 2008 Convention on Cluster Munitions bans their use, production, and stockpiling. 112 countries have joined. The United States has not signed and maintains stockpiles.' },
       { type: 'source', text: 'Sources: Cluster Munition Monitor, COPE (Laos), Human Rights Watch' },
     ],
   },
 
   'white-phosphorus': {
-    gradient: 'g3',
+    color: 'c-peach',
     query: 'Has the U.S. used white phosphorus?',
     lines: [
-      { type: 'heading', cls: 'g3', text: 'White Phosphorus in Populated Areas' },
+      { type: 'heading', cls: 'c-peach', text: 'White Phosphorus in Populated Areas' },
       { type: 'sub', text: 'Properties' },
-      { type: 'body', text: 'White phosphorus (WP) ignites on contact with air, burns at 800C (1,500F), and cannot be extinguished with water. It causes deep chemical burns that continue burning through flesh to the bone. Its use against civilians is prohibited under Protocol III of the Convention on Certain Conventional Weapons.' },
+      { type: 'body', text: 'White phosphorus ignites on contact with air, burns at 800C (1,500F), and cannot be extinguished with water. It burns through flesh to the bone. Its use against civilians is prohibited under Protocol III of the CCW.' },
       { type: 'spacer' },
       { type: 'sub', text: 'Documented Use' },
-      { type: 'stat', text: 'Fallujah, Iraq (Nov 2004): The U.S. initially denied using WP as a weapon' },
-      { type: 'stat', text: 'Army journal "Field Artillery" later published accounts describing WP used to "flush out" insurgents from buildings in civilian areas' },
-      { type: 'stat', text: 'The Pentagon eventually admitted WP was used as an "incendiary weapon" but maintained it was legal' },
+      { type: 'stat', text: 'Fallujah, Iraq (Nov 2004): U.S. initially denied using WP as a weapon' },
+      { type: 'stat', text: 'Army journal "Field Artillery" described WP used to "flush out" people from buildings in civilian areas' },
+      { type: 'stat', text: 'Pentagon eventually admitted use as "incendiary weapon" but maintained legality' },
       { type: 'spacer' },
-      { type: 'body', text: 'Italian documentary "Fallujah: The Hidden Massacre" (2005) included testimony from U.S. soldiers and footage of civilian casualties consistent with WP burns.' },
+      { type: 'body', text: 'Italian documentary "Fallujah: The Hidden Massacre" (2005) included U.S. soldier testimony and footage of civilian casualties consistent with WP burns.' },
       { type: 'spacer' },
       { type: 'sub', text: 'Legal Status' },
       { type: 'body', text: 'The U.S. is not party to Protocol III of the CCW. It classifies WP as a "conventional munition" rather than a chemical weapon, a classification disputed by many international legal experts.' },
@@ -163,56 +175,49 @@ const sections = {
   },
 
   landmines: {
-    gradient: 'g4',
+    color: 'c-rose',
     query: 'What about landmines?',
     lines: [
-      { type: 'heading', cls: 'g4', text: 'Landmine Legacy' },
+      { type: 'heading', cls: 'c-rose', text: 'Landmine Legacy' },
       { type: 'sub', text: 'Global Impact' },
-      { type: 'body', text: 'The U.S. military deployed millions of landmines across conflict zones during the 20th century, including in Korea, Vietnam, Cambodia, and the Persian Gulf region.' },
+      { type: 'body', text: 'The U.S. military deployed millions of landmines across conflict zones during the 20th century, including in Korea, Vietnam, Cambodia, and the Persian Gulf.' },
       { type: 'spacer' },
-      { type: 'stat', text: 'Korean DMZ: Approximately 1 million U.S.-laid mines remain along the demilitarized zone' },
-      { type: 'stat', text: 'Cambodia: ~64,000 Cambodians have been killed or injured by mines and UXO since 1979' },
+      { type: 'stat', text: 'Korean DMZ: ~1 million U.S.-laid mines remain' },
+      { type: 'stat', text: 'Cambodia: ~64,000 killed or injured by mines and UXO since 1979' },
       { type: 'spacer' },
       { type: 'sub', text: 'International Ban' },
-      { type: 'body', text: 'The 1997 Ottawa Treaty (Mine Ban Treaty) prohibits the use, stockpiling, production, and transfer of anti-personnel landmines. 164 countries have signed.' },
-      { type: 'spacer' },
-      { type: 'body', text: 'The United States has not signed the Ottawa Treaty. In 2020, the Trump administration reversed Obama-era restrictions and authorized landmine use outside the Korean Peninsula. The Biden administration later reinstated restrictions but did not join the treaty.' },
+      { type: 'body', text: 'The 1997 Ottawa Treaty prohibits anti-personnel landmines. 164 countries have signed. The United States has not signed the treaty.' },
       { type: 'spacer' },
       { type: 'sub', text: 'Ongoing Harm' },
-      { type: 'body', text: 'Landmines and unexploded ordnance continue to kill approximately 5,000 people annually worldwide. Many of the affected areas were mined during U.S. military operations decades ago.' },
+      { type: 'body', text: 'Landmines and unexploded ordnance kill approximately 5,000 people annually worldwide. Many affected areas were mined during U.S. military operations decades ago.' },
       { type: 'source', text: 'Sources: ICBL Landmine Monitor, CMAC Cambodia, ICRC' },
     ],
   },
 };
 
-const helpLines = [
-  { type: 'heading', text: 'Available Commands' },
-  { type: 'spacer' },
-  { type: 'command', text: 'overview ............ Introduction and purpose' },
-  { type: 'command', text: 'agent-orange ........ Chemical warfare in Vietnam' },
-  { type: 'command', text: 'drone-strikes ....... Extrajudicial killings via drones' },
-  { type: 'command', text: 'nuclear ............. Atomic bombings and testing fallout' },
-  { type: 'command', text: 'depleted-uranium .... Radioactive munitions in Iraq' },
-  { type: 'command', text: 'cluster-munitions ... Indiscriminate area-denial weapons' },
-  { type: 'command', text: 'white-phosphorus .... Incendiary use in populated areas' },
-  { type: 'command', text: 'landmines ........... Unexploded ordnance legacy' },
-  { type: 'command', text: 'clear ............... Clear conversation' },
-];
-
-const conversation = document.getElementById('conversation');
+// DOM
+const landing = document.getElementById('landing');
+const convView = document.getElementById('conv-view');
+const convContent = document.getElementById('conv-content');
+const convScroll = document.getElementById('conv-scroll');
 const input = document.getElementById('input');
+const convInput = document.getElementById('conv-input');
 const sendBtn = document.getElementById('send-btn');
-const threads = document.querySelectorAll('.thread');
-const newChatBtn = document.getElementById('new-chat');
+const convSendBtn = document.getElementById('conv-send-btn');
+const pills = document.querySelectorAll('.pill');
+const iconBtns = document.querySelectorAll('.icon-btn[data-section]');
 
-let isAnimating = false;
-
-function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
+function showLanding() {
+  landing.classList.remove('hidden');
+  convView.classList.add('hidden');
+  convContent.innerHTML = '';
+  iconBtns.forEach(b => b.classList.toggle('active-icon', b.dataset.section === 'home'));
 }
 
-function setActiveThread(section) {
-  threads.forEach(t => t.classList.toggle('active', t.dataset.section === section));
+function showConversation() {
+  landing.classList.add('hidden');
+  landing.style.display = 'none';
+  convView.classList.remove('hidden');
 }
 
 function createUserMsg(text) {
@@ -225,153 +230,161 @@ function createUserMsg(text) {
 function buildClaudeMsg(lines) {
   const msg = document.createElement('div');
   msg.className = 'msg msg-claude';
-
   for (const line of lines) {
+    const el = document.createElement('div');
     if (line.type === 'heading') {
-      const el = document.createElement('div');
       el.className = `msg-heading ${line.cls || ''}`;
       el.textContent = line.text;
-      msg.appendChild(el);
     } else if (line.type === 'sub') {
-      const el = document.createElement('div');
       el.className = 'msg-sub';
       el.textContent = line.text;
-      msg.appendChild(el);
     } else if (line.type === 'body') {
-      const el = document.createElement('div');
       el.className = 'msg-body';
       el.textContent = line.text;
-      msg.appendChild(el);
     } else if (line.type === 'stat') {
-      const el = document.createElement('div');
       el.className = 'msg-stat';
       el.textContent = line.text;
-      msg.appendChild(el);
     } else if (line.type === 'source') {
-      const el = document.createElement('div');
       el.className = 'msg-source';
       el.textContent = line.text;
-      msg.appendChild(el);
     } else if (line.type === 'command') {
-      const el = document.createElement('div');
       el.className = 'msg-command';
       el.textContent = line.text;
-      msg.appendChild(el);
     } else if (line.type === 'spacer') {
-      const el = document.createElement('div');
       el.className = 'msg-spacer';
-      msg.appendChild(el);
-    } else if (line.type === 'tags') {
-      const row = document.createElement('div');
-      row.className = 'tag-row';
-      for (const item of line.items) {
-        const btn = document.createElement('button');
-        btn.className = `tag tag-${item.style}`;
-        btn.textContent = item.label;
-        btn.addEventListener('click', () => {
-          if (!isAnimating) loadSection(item.section);
-        });
-        row.appendChild(btn);
-      }
-      msg.appendChild(row);
     }
+    msg.appendChild(el);
   }
-
   return msg;
 }
 
-async function loadSection(section, customQuery) {
+function loadSection(section, customQuery) {
   const data = sections[section];
   if (!data) return;
 
-  isAnimating = true;
-  setActiveThread(section);
+  showConversation();
 
-  const userMsg = createUserMsg(customQuery || data.query);
-  conversation.appendChild(userMsg);
-  conversation.scrollTop = conversation.scrollHeight;
+  // Update icon bar
+  iconBtns.forEach(b => b.classList.toggle('active-icon', b.dataset.section === section));
 
-  await sleep(300);
+  // Add back button
+  const back = document.createElement('button');
+  back.className = 'back-btn';
+  back.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 7H4M4 7l3-3M4 7l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Back';
+  back.addEventListener('click', () => {
+    landing.style.display = '';
+    showLanding();
+  });
+  convContent.appendChild(back);
 
-  const claudeMsg = buildClaudeMsg(data.lines);
-  claudeMsg.style.opacity = '0';
-  conversation.appendChild(claudeMsg);
-  conversation.scrollTop = conversation.scrollHeight;
+  // User message
+  convContent.appendChild(createUserMsg(customQuery || data.query));
 
-  await sleep(50);
-  claudeMsg.style.opacity = '';
-
-  conversation.scrollTop = conversation.scrollHeight;
-  isAnimating = false;
+  // Claude response
+  setTimeout(() => {
+    convContent.appendChild(buildClaudeMsg(data.lines));
+    convScroll.scrollTop = convScroll.scrollHeight;
+  }, 200);
 }
 
-function handleCommand(cmd) {
+function handleCommand(cmd, fromConv) {
   const trimmed = cmd.trim().toLowerCase().replace(/^[-\/]+/, '');
 
-  if (trimmed === 'clear') {
-    conversation.innerHTML = '';
-    return;
-  }
-
-  if (trimmed === 'help') {
-    const userMsg = createUserMsg('help');
-    conversation.appendChild(userMsg);
-    const claudeMsg = buildClaudeMsg(helpLines);
-    conversation.appendChild(claudeMsg);
-    conversation.scrollTop = conversation.scrollHeight;
+  if (trimmed === 'clear' || trimmed === 'home' || trimmed === 'back') {
+    landing.style.display = '';
+    showLanding();
     return;
   }
 
   if (sections[trimmed]) {
-    loadSection(trimmed, cmd.trim());
+    if (fromConv) {
+      convContent.appendChild(createUserMsg(cmd.trim()));
+      iconBtns.forEach(b => b.classList.toggle('active-icon', b.dataset.section === trimmed));
+      setTimeout(() => {
+        convContent.appendChild(buildClaudeMsg(sections[trimmed].lines));
+        convScroll.scrollTop = convScroll.scrollHeight;
+      }, 200);
+    } else {
+      loadSection(trimmed, cmd.trim());
+    }
     return;
   }
 
   const keys = Object.keys(sections);
   const match = keys.find(k => k.includes(trimmed) || trimmed.includes(k));
   if (match) {
-    loadSection(match, cmd.trim());
+    if (fromConv) {
+      convContent.appendChild(createUserMsg(cmd.trim()));
+      iconBtns.forEach(b => b.classList.toggle('active-icon', b.dataset.section === match));
+      setTimeout(() => {
+        convContent.appendChild(buildClaudeMsg(sections[match].lines));
+        convScroll.scrollTop = convScroll.scrollHeight;
+      }, 200);
+    } else {
+      loadSection(match, cmd.trim());
+    }
     return;
   }
 
-  const userMsg = createUserMsg(cmd);
-  conversation.appendChild(userMsg);
-  const errMsg = buildClaudeMsg([
-    { type: 'body', text: `I don't have information on "${cmd}". Type "help" to see available topics.` },
-  ]);
-  conversation.appendChild(errMsg);
-  conversation.scrollTop = conversation.scrollHeight;
+  // Unknown
+  const target = fromConv ? convContent : convContent;
+  if (!fromConv) showConversation();
+  convContent.appendChild(createUserMsg(cmd));
+  setTimeout(() => {
+    convContent.appendChild(buildClaudeMsg([
+      { type: 'body', text: `I don't have information on "${cmd}". Try one of the topics: agent-orange, drone-strikes, nuclear, depleted-uranium, cluster-munitions, white-phosphorus, or landmines.` },
+    ]));
+    convScroll.scrollTop = convScroll.scrollHeight;
+  }, 200);
 }
 
-function submit() {
-  if (isAnimating) return;
-  const val = input.value.trim();
-  input.value = '';
-  if (val) handleCommand(val);
-}
-
+// Events
 input.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') submit();
+  if (e.key === 'Enter' && input.value.trim()) {
+    handleCommand(input.value, false);
+    input.value = '';
+  }
 });
 
-sendBtn.addEventListener('click', submit);
+sendBtn.addEventListener('click', () => {
+  if (input.value.trim()) {
+    handleCommand(input.value, false);
+    input.value = '';
+  }
+});
 
-threads.forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (!isAnimating) loadSection(btn.dataset.section);
+convInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && convInput.value.trim()) {
+    handleCommand(convInput.value, true);
+    convInput.value = '';
+  }
+});
+
+convSendBtn.addEventListener('click', () => {
+  if (convInput.value.trim()) {
+    handleCommand(convInput.value, true);
+    convInput.value = '';
+  }
+});
+
+pills.forEach(p => {
+  p.addEventListener('click', () => loadSection(p.dataset.section));
+});
+
+iconBtns.forEach(b => {
+  b.addEventListener('click', () => {
+    if (b.dataset.section === 'home') {
+      landing.style.display = '';
+      showLanding();
+    } else if (b.dataset.section === 'search') {
+      input.focus();
+    } else if (sections[b.dataset.section]) {
+      loadSection(b.dataset.section);
+    }
   });
 });
 
-newChatBtn.addEventListener('click', () => {
-  conversation.innerHTML = '';
-  setActiveThread('overview');
-  loadSection('overview');
-});
-
-// Initial load
-loadSection('overview');
+// Init
+document.getElementById('greeting-text').textContent = getGreeting();
+createFlowers();
 input.focus();
-
-conversation.addEventListener('click', (e) => {
-  if (e.target === conversation) input.focus();
-});

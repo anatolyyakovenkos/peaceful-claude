@@ -6,59 +6,91 @@
   <title>Peaceful Claude</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Flower SVGs scattered in background -->
+  <div class="flowers" id="flowers" aria-hidden="true"></div>
+
   <div class="app">
-    <aside class="sidebar">
-      <div class="sidebar-top">
-        <button class="new-chat-btn" id="new-chat">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          New topic
+    <!-- Thin icon sidebar like claude.ai -->
+    <aside class="icon-bar">
+      <div class="icon-bar-top">
+        <button class="icon-btn active-icon" data-section="home" title="Home">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2.5 7.5L9 2l6.5 5.5V15a1 1 0 01-1 1H3.5a1 1 0 01-1-1V7.5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="icon-btn" data-section="search" title="Search topics">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M12.5 12.5L16 16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn" data-section="agent-orange" title="Agent Orange">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <button class="icon-btn" data-section="drone-strikes" title="Drone Program">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9a6 6 0 0112 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6 9a3 3 0 016 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="1" fill="currentColor"/><path d="M9 10v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn" data-section="nuclear" title="Nuclear Weapons">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M9 2.5v4M9 11.5v4M2.5 9h4M11.5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn" data-section="cluster-munitions" title="Cluster Munitions">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="6" r="2.5" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="12" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <button class="icon-btn" data-section="landmines" title="Landmines">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 14h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M5 14l1.5-4h5L13 14" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 10V6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="4.5" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
         </button>
       </div>
-      <nav class="sidebar-threads">
-        <span class="threads-label">Topics</span>
-        <button class="thread active" data-section="overview">Overview</button>
-        <button class="thread" data-section="agent-orange">Agent Orange</button>
-        <button class="thread" data-section="drone-strikes">Drone Program</button>
-        <button class="thread" data-section="nuclear">Nuclear Weapons</button>
-        <button class="thread" data-section="depleted-uranium">Depleted Uranium</button>
-        <button class="thread" data-section="cluster-munitions">Cluster Munitions</button>
-        <button class="thread" data-section="white-phosphorus">White Phosphorus</button>
-        <button class="thread" data-section="landmines">Landmines</button>
-      </nav>
-      <div class="sidebar-bottom">
-        <span class="sidebar-note">Sourced from declassified records</span>
+      <div class="icon-bar-bottom">
+        <button class="icon-btn" title="About">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M9 12V8.5M9 6.5V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
       </div>
     </aside>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="header">
-          <div class="header-logo">
-            <div class="logo-circle">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.2" fill="none"/>
-                <path d="M6.5 10L9 12.5L13.5 7.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <span>Peaceful Claude</span>
-          </div>
+    <!-- Main centered area -->
+    <main class="main" id="main">
+      <!-- Landing view (like claude.ai home) -->
+      <div class="landing" id="landing">
+        <div class="greeting">
+          <span class="greeting-icon">*</span>
+          <span class="greeting-text" id="greeting-text">Good evening</span>
         </div>
-
-        <div class="conversation" id="conversation">
-          <!-- Content rendered by JS -->
-        </div>
-
-        <div class="input-area">
+        <div class="input-wrapper">
           <div class="input-box">
-            <input type="text" id="input" placeholder="Type a topic or 'help'..." autocomplete="off" spellcheck="false">
-            <button class="send-btn" id="send-btn">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <button class="input-plus">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+            <input type="text" id="input" placeholder="What would you like to know?" autocomplete="off" spellcheck="false">
+            <span class="input-model">Peaceful Claude</span>
+            <button class="input-send" id="send-btn">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
-          <span class="input-hint">peace through truth, accountability through memory</span>
+        </div>
+        <div class="pills" id="pills">
+          <button class="pill" data-section="agent-orange"><span class="pill-icon">*</span> Agent Orange</button>
+          <button class="pill" data-section="drone-strikes"><span class="pill-icon">*</span> Drone Program</button>
+          <button class="pill" data-section="nuclear"><span class="pill-icon">*</span> Nuclear</button>
+          <button class="pill" data-section="depleted-uranium"><span class="pill-icon">*</span> Depleted Uranium</button>
+          <button class="pill" data-section="cluster-munitions"><span class="pill-icon">*</span> Cluster Munitions</button>
+          <button class="pill" data-section="white-phosphorus"><span class="pill-icon">*</span> White Phosphorus</button>
+          <button class="pill" data-section="landmines"><span class="pill-icon">*</span> Landmines</button>
+        </div>
+      </div>
+
+      <!-- Conversation view -->
+      <div class="conv-view hidden" id="conv-view">
+        <div class="conv-scroll" id="conv-scroll">
+          <div class="conv-content" id="conv-content"></div>
+        </div>
+        <div class="conv-input-area">
+          <div class="input-box">
+            <button class="input-plus">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+            <input type="text" id="conv-input" placeholder="Ask about another topic..." autocomplete="off" spellcheck="false">
+            <button class="input-send" id="conv-send-btn">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </main>
