@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peaceful Claude - Terminal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M9 14 L13 18 L19 10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="logo-text">Peaceful Claude</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <button class="nav-btn active" data-section="overview">Overview</button>
+        <button class="nav-btn" data-section="agent-orange">Agent Orange</button>
+        <button class="nav-btn" data-section="drone-strikes">Drone Program</button>
+        <button class="nav-btn" data-section="nuclear">Nuclear Weapons</button>
+        <button class="nav-btn" data-section="depleted-uranium">Depleted Uranium</button>
+        <button class="nav-btn" data-section="cluster-munitions">Cluster Munitions</button>
+        <button class="nav-btn" data-section="white-phosphorus">White Phosphorus</button>
+        <button class="nav-btn" data-section="landmines">Landmines</button>
+      </div>
+      <div class="sidebar-footer">
+        <p class="footnote">All information sourced from declassified documents, congressional records, and international investigations.</p>
+      </div>
+    </nav>
+
+    <main class="main">
+      <div class="terminal-wrapper">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot dot-close"></span>
+            <span class="dot dot-min"></span>
+            <span class="dot dot-max"></span>
+          </div>
+          <span class="terminal-title">peaceful-claude --- terminal</span>
+          <div class="terminal-bar-right"></div>
+        </div>
+        <div class="terminal" id="terminal">
+          <div class="terminal-content" id="terminal-content">
+            <!-- Content rendered by JS -->
+          </div>
+          <div class="input-row">
+            <span class="prompt-symbol">~</span>
+            <input type="text" id="terminal-input" class="terminal-input" placeholder="Type a topic or 'help' for commands..." autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
