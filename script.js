@@ -1,31 +1,58 @@
-// Generate background flowers
+// Generate background orange flowers (terracotta style like the reference image)
 function createFlowers() {
   const container = document.getElementById('flowers');
-  const colors = ['#e8a0b4', '#b8a0e8', '#a0cce8', '#a0e8c4', '#e8c4a0', '#e8d8a0', '#e8a0a0'];
+  const colors = ['#c87a52', '#d4946e', '#c46b4a', '#e8a882', '#b0603a', '#d68a5c', '#c47850'];
 
   const flowerSVGs = [
-    // Simple 5-petal flower
-    (c) => `<svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="18" r="10" fill="${c}"/><circle cx="18" cy="28" r="10" fill="${c}"/><circle cx="42" cy="28" r="10" fill="${c}"/><circle cx="22" cy="40" r="10" fill="${c}"/><circle cx="38" cy="40" r="10" fill="${c}"/><circle cx="30" cy="30" r="6" fill="${c}" opacity="0.6"/></svg>`,
-    // Daisy
-    (c) => `<svg viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="14" rx="5" ry="12" fill="${c}"/><ellipse cx="30" cy="46" rx="5" ry="12" fill="${c}"/><ellipse cx="14" cy="30" rx="12" ry="5" fill="${c}"/><ellipse cx="46" cy="30" rx="12" ry="5" fill="${c}"/><ellipse cx="19" cy="19" rx="5" ry="12" transform="rotate(45 19 19)" fill="${c}"/><ellipse cx="41" cy="41" rx="5" ry="12" transform="rotate(45 41 41)" fill="${c}"/><ellipse cx="41" cy="19" rx="5" ry="12" transform="rotate(-45 41 19)" fill="${c}"/><ellipse cx="19" cy="41" rx="5" ry="12" transform="rotate(-45 19 41)" fill="${c}"/><circle cx="30" cy="30" r="7" fill="${c}" opacity="0.5"/></svg>`,
-    // Simple leaf/petal
-    (c) => `<svg viewBox="0 0 40 60" fill="none"><path d="M20 5 Q35 20 35 35 Q35 55 20 55 Q5 55 5 35 Q5 20 20 5Z" fill="${c}"/><path d="M20 15 v30" stroke="${c}" stroke-width="1" opacity="0.4"/></svg>`,
-    // Small blossom
-    (c) => `<svg viewBox="0 0 50 50" fill="none"><circle cx="25" cy="15" r="8" fill="${c}"/><circle cx="15" cy="30" r="8" fill="${c}"/><circle cx="35" cy="30" r="8" fill="${c}"/><circle cx="25" cy="25" r="5" fill="${c}" opacity="0.5"/></svg>`,
+    // Daisy with petals like the reference image (rounded oval petals radiating from center)
+    (c) => `<svg viewBox="0 0 80 80" fill="none">
+      <ellipse cx="40" cy="14" rx="7" ry="16" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="40" cy="66" rx="7" ry="16" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="14" cy="40" rx="16" ry="7" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="66" cy="40" rx="16" ry="7" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="21" cy="21" rx="7" ry="16" transform="rotate(45 21 21)" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="59" cy="59" rx="7" ry="16" transform="rotate(45 59 59)" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="59" cy="21" rx="7" ry="16" transform="rotate(-45 59 21)" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <ellipse cx="21" cy="59" rx="7" ry="16" transform="rotate(-45 21 59)" fill="${c}" stroke="#3a2a1a" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="40" cy="40" r="12" fill="#fff" stroke="#3a2a1a" stroke-width="1.5"/>
+    </svg>`,
+    // Simpler 5-petal orange flower
+    (c) => `<svg viewBox="0 0 60 60" fill="none">
+      <ellipse cx="30" cy="10" rx="8" ry="14" fill="${c}" stroke="#3a2a1a" stroke-width="1.2"/>
+      <ellipse cx="12" cy="28" rx="8" ry="14" transform="rotate(72 12 28)" fill="${c}" stroke="#3a2a1a" stroke-width="1.2"/>
+      <ellipse cx="48" cy="28" rx="8" ry="14" transform="rotate(-72 48 28)" fill="${c}" stroke="#3a2a1a" stroke-width="1.2"/>
+      <ellipse cx="18" cy="46" rx="8" ry="14" transform="rotate(36 18 46)" fill="${c}" stroke="#3a2a1a" stroke-width="1.2"/>
+      <ellipse cx="42" cy="46" rx="8" ry="14" transform="rotate(-36 42 46)" fill="${c}" stroke="#3a2a1a" stroke-width="1.2"/>
+      <circle cx="30" cy="30" r="8" fill="#fff" stroke="#3a2a1a" stroke-width="1.2"/>
+    </svg>`,
+    // Small round petal cluster
+    (c) => `<svg viewBox="0 0 50 50" fill="none">
+      <circle cx="25" cy="12" r="9" fill="${c}" stroke="#3a2a1a" stroke-width="1"/>
+      <circle cx="12" cy="30" r="9" fill="${c}" stroke="#3a2a1a" stroke-width="1"/>
+      <circle cx="38" cy="30" r="9" fill="${c}" stroke="#3a2a1a" stroke-width="1"/>
+      <circle cx="18" cy="42" r="9" fill="${c}" stroke="#3a2a1a" stroke-width="1"/>
+      <circle cx="32" cy="42" r="9" fill="${c}" stroke="#3a2a1a" stroke-width="1"/>
+      <circle cx="25" cy="28" r="6" fill="#fff" stroke="#3a2a1a" stroke-width="1"/>
+    </svg>`,
+    // Single large petal/leaf
+    (c) => `<svg viewBox="0 0 40 60" fill="none">
+      <path d="M20 5 Q35 20 35 35 Q35 55 20 55 Q5 55 5 35 Q5 20 20 5Z" fill="${c}" stroke="#3a2a1a" stroke-width="1.2"/>
+      <path d="M20 15v30" stroke="#3a2a1a" stroke-width="0.8" opacity="0.3"/>
+    </svg>`,
   ];
 
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 18; i++) {
     const el = document.createElement('div');
     el.className = 'flower';
     const color = colors[Math.floor(Math.random() * colors.length)];
     const svg = flowerSVGs[Math.floor(Math.random() * flowerSVGs.length)];
-    const size = 40 + Math.random() * 80;
+    const size = 50 + Math.random() * 90;
     el.innerHTML = svg(color);
     el.style.width = size + 'px';
     el.style.height = size + 'px';
     el.style.left = Math.random() * 100 + '%';
     el.style.top = Math.random() * 100 + '%';
-    el.style.opacity = 0.035 + Math.random() * 0.04;
+    el.style.opacity = 0.08 + Math.random() * 0.07;
     el.style.animationDelay = -(Math.random() * 30) + 's';
     el.style.animationDuration = (25 + Math.random() * 15) + 's';
     el.style.transform = `rotate(${Math.random() * 360}deg)`;

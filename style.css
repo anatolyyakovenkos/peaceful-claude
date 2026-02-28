@@ -5,26 +5,25 @@
 }
 
 :root {
-  --bg: #1e1e2e;
-  --bg-warm: #252535;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --bg-input: rgba(255, 255, 255, 0.07);
-  --bg-input-hover: rgba(255, 255, 255, 0.10);
-  --text: #e8e4df;
-  --text-secondary: #a8a4a0;
-  --text-muted: #5e5c58;
-  --border: rgba(255, 255, 255, 0.06);
-  --rose: #e8a0b4;
-  --lavender: #b8a0e8;
-  --sky: #a0cce8;
-  --mint: #a0e8c4;
-  --peach: #e8c4a0;
-  --coral: #e8a0a0;
-  --gold: #e8d8a0;
-  --gradient-rose: linear-gradient(135deg, #e8a0b4, #e8c4a0);
-  --gradient-lavender: linear-gradient(135deg, #b8a0e8, #a0cce8);
-  --gradient-mint: linear-gradient(135deg, #a0e8c4, #a0cce8);
-  --gradient-sunset: linear-gradient(135deg, #e8a0a0, #e8d8a0);
+  --bg: #faf5ef;
+  --bg-warm: #f5ede3;
+  --bg-card: rgba(0, 0, 0, 0.03);
+  --bg-input: rgba(0, 0, 0, 0.05);
+  --bg-input-hover: rgba(0, 0, 0, 0.07);
+  --text: #2c2520;
+  --text-secondary: #5c534a;
+  --text-muted: #9e9389;
+  --border: rgba(0, 0, 0, 0.08);
+  --orange: #c87a52;
+  --orange-light: #d4946e;
+  --orange-dark: #b0603a;
+  --terracotta: #c46b4a;
+  --peach: #e8a882;
+  --cream: #f0dcc8;
+  --rust: #a85a3a;
+  --warm-brown: #6b4c38;
+  --sage: #7a9478;
+  --dusty-rose: #c48a7a;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -49,7 +48,6 @@ html, body {
 
 .flower {
   position: absolute;
-  opacity: 0.06;
   animation: floatFlower 30s ease-in-out infinite;
 }
 
@@ -60,9 +58,9 @@ html, body {
 
 @keyframes floatFlower {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-12px) rotate(5deg); }
-  50% { transform: translateY(-6px) rotate(-3deg); }
-  75% { transform: translateY(-15px) rotate(4deg); }
+  25% { transform: translateY(-10px) rotate(4deg); }
+  50% { transform: translateY(-5px) rotate(-2deg); }
+  75% { transform: translateY(-12px) rotate(3deg); }
 }
 
 .app {
@@ -72,11 +70,11 @@ html, body {
   z-index: 1;
 }
 
-/* Icon sidebar - thin like claude.ai */
+/* Icon sidebar */
 .icon-bar {
   width: 44px;
   min-width: 44px;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--bg-warm);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -107,13 +105,41 @@ html, body {
 }
 
 .icon-btn:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.05);
   color: var(--text-secondary);
 }
 
 .icon-btn.active-icon {
-  color: var(--rose);
-  background: rgba(232, 160, 180, 0.1);
+  color: var(--orange);
+  background: rgba(200, 122, 82, 0.12);
+}
+
+/* Social links at bottom of sidebar */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.social-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--orange);
 }
 
 /* Main area */
@@ -124,7 +150,7 @@ html, body {
   overflow: hidden;
 }
 
-/* Landing page - centered like claude.ai */
+/* Landing page */
 .landing {
   flex: 1;
   display: flex;
@@ -143,10 +169,7 @@ html, body {
 
 .greeting-icon {
   font-size: 28px;
-  background: var(--gradient-rose);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--orange);
   font-weight: 700;
 }
 
@@ -157,7 +180,7 @@ html, body {
   letter-spacing: -0.02em;
 }
 
-/* Input box - matching claude.ai style */
+/* Input box */
 .input-wrapper {
   width: 100%;
   max-width: 620px;
@@ -176,8 +199,9 @@ html, body {
 }
 
 .input-box:focus-within {
-  border-color: rgba(232, 160, 180, 0.3);
-  box-shadow: 0 0 0 3px rgba(232, 160, 180, 0.06);
+  border-color: rgba(200, 122, 82, 0.4);
+  box-shadow: 0 0 0 3px rgba(200, 122, 82, 0.08);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .input-plus {
@@ -224,8 +248,8 @@ html, body {
   height: 32px;
   border-radius: 10px;
   border: none;
-  background: var(--gradient-rose);
-  color: var(--bg);
+  background: var(--orange);
+  color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -235,11 +259,11 @@ html, body {
 }
 
 .input-send:hover {
-  opacity: 0.85;
+  background: var(--orange-dark);
   transform: scale(1.05);
 }
 
-/* Pills - like claude.ai category buttons */
+/* Pills */
 .pills {
   display: flex;
   flex-wrap: wrap;
@@ -256,7 +280,7 @@ html, body {
   padding: 8px 16px;
   border-radius: 24px;
   border: 1px solid var(--border);
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.6);
   color: var(--text-secondary);
   font-family: var(--font);
   font-size: 13px;
@@ -266,22 +290,15 @@ html, body {
 }
 
 .pill:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(200, 122, 82, 0.08);
   color: var(--text);
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(200, 122, 82, 0.25);
 }
-
-.pill:nth-child(1) .pill-icon { color: var(--mint); }
-.pill:nth-child(2) .pill-icon { color: var(--lavender); }
-.pill:nth-child(3) .pill-icon { color: var(--coral); }
-.pill:nth-child(4) .pill-icon { color: var(--sky); }
-.pill:nth-child(5) .pill-icon { color: var(--gold); }
-.pill:nth-child(6) .pill-icon { color: var(--peach); }
-.pill:nth-child(7) .pill-icon { color: var(--rose); }
 
 .pill-icon {
   font-weight: 700;
   font-size: 14px;
+  color: var(--orange);
 }
 
 /* Conversation view */
@@ -304,7 +321,7 @@ html, body {
 }
 
 .conv-scroll::-webkit-scrollbar { width: 5px; }
-.conv-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.conv-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 3px; }
 
 .conv-content {
   width: 100%;
@@ -326,7 +343,7 @@ html, body {
   max-width: 680px;
 }
 
-/* Message styles */
+/* Messages */
 .msg {
   padding: 16px 20px;
   border-radius: 18px;
@@ -341,8 +358,8 @@ html, body {
 }
 
 .msg-user {
-  background: rgba(232, 160, 180, 0.1);
-  color: var(--rose);
+  background: var(--orange);
+  color: #fff;
   font-size: 14px;
   font-weight: 500;
   align-self: flex-end;
@@ -351,9 +368,10 @@ html, body {
 }
 
 .msg-claude {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--border);
   border-bottom-left-radius: 6px;
+  backdrop-filter: blur(8px);
 }
 
 .msg-heading {
@@ -363,13 +381,13 @@ html, body {
   letter-spacing: -0.01em;
 }
 
-.msg-heading.c-rose { color: var(--rose); }
-.msg-heading.c-lavender { color: var(--lavender); }
-.msg-heading.c-sky { color: var(--sky); }
-.msg-heading.c-mint { color: var(--mint); }
-.msg-heading.c-coral { color: var(--coral); }
-.msg-heading.c-gold { color: var(--gold); }
-.msg-heading.c-peach { color: var(--peach); }
+.msg-heading.c-rose { color: var(--dusty-rose); }
+.msg-heading.c-lavender { color: #8a6aaa; }
+.msg-heading.c-sky { color: #4a8aaa; }
+.msg-heading.c-mint { color: var(--sage); }
+.msg-heading.c-coral { color: var(--terracotta); }
+.msg-heading.c-gold { color: var(--rust); }
+.msg-heading.c-peach { color: var(--orange); }
 
 .msg-sub {
   font-weight: 600;
@@ -378,7 +396,7 @@ html, body {
   letter-spacing: 0.06em;
   margin-top: 16px;
   margin-bottom: 6px;
-  color: var(--lavender);
+  color: var(--orange);
 }
 
 .msg-body {
@@ -387,7 +405,7 @@ html, body {
 }
 
 .msg-stat {
-  color: var(--peach);
+  color: var(--terracotta);
   font-family: var(--font-mono);
   font-size: 12.5px;
   padding: 4px 0 4px 14px;
@@ -407,7 +425,7 @@ html, body {
 .msg-command {
   font-family: var(--font-mono);
   font-size: 12.5px;
-  color: var(--mint);
+  color: var(--sage);
   padding: 3px 0;
 }
 
@@ -415,7 +433,7 @@ html, body {
   height: 8px;
 }
 
-/* Back button in conv view */
+/* Back button */
 .back-btn {
   display: inline-flex;
   align-items: center;
